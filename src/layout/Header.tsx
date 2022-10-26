@@ -10,8 +10,10 @@ const Header = () => {
   };
 
   useEffect(() => {
-    isMenuOpen? document.body.style.overflowY = "hidden" : document.body.style.overflowY = "auto"
-  }, [isMenuOpen])
+    isMenuOpen
+      ? (document.body.style.overflowY = "hidden")
+      : (document.body.style.overflowY = "auto");
+  }, [isMenuOpen]);
   return (
     <header className="container mx-auto flex items-center justify-between py-6 px-4 sm:pt-16">
       <img src={logo} alt="W." className="h-auto w-10 sm:w-14" />
@@ -39,7 +41,7 @@ const Header = () => {
         </Link>
       </nav>
       {/* Desktop Nav */}
-      <nav className="hidden sm:flex space-x-8 font-Tenor text-xl font-semibold capitalize text-dark-blue/80">
+      <nav className="hidden space-x-8 font-Tenor text-xl font-semibold capitalize text-dark-blue/80 sm:flex">
         <Link to="/" className="hover:text-soft-orange">
           Home
         </Link>

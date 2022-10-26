@@ -8,9 +8,14 @@ export type articleT = {
   media: string;
 };
 
+const HEADERS = {
+  origin: API_URL,
+  "x-api-key": API_KEY
+}
+
 export const getNewsByCategory = async (category: string = "") => {
   const res = await fetch(
-    `${API_URL}top-headlines?category=${category}&language=en&apiKey=${API_KEY}`
+    `${API_URL}/top-headlines?category=${category}&language=en&apiKey=${API_KEY}`
   );
   const data = await res.json();
   const news: articleT[] = await data.articles.map(filterNews);
@@ -18,8 +23,8 @@ export const getNewsByCategory = async (category: string = "") => {
 };
 
 export const getAllHeadlineNews = async () => {
-  const res = await fetch(`${API_URL}latest_headlines?lang=en&when=1h`, {
-    headers: { "x-api-key": API_KEY },
+  const res = await fetch(`${API_URL}/v2/latest_headlines?lang=en&when=1h`, {
+    headers: HEADERS,
   });
   const data = await res.json();
   const news: articleT[] = await data.articles.map(filterNews);
