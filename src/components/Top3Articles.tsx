@@ -7,11 +7,11 @@ interface TopArticlesProps {
 const TopArticles = ({topArticles}: TopArticlesProps) => {
   return (
     <div className="gap-6  sm:col-span-3 sm:flex sm:gap-8 sm:justify-between sm:items-center">
-        {topArticles.map(({ title, urlToImage, url }, i) => {
+        {topArticles.map(({ title, media, link }, i) => {
           return (
             <div className="flex h-[150px] w-full gap-4 overflow-hidden">
               <img
-                src={urlToImage}
+                src={media}
                 alt={title}
                 className="h-[150px] w-[120px] object-cover object-center"
               />
@@ -20,7 +20,7 @@ const TopArticles = ({topArticles}: TopArticlesProps) => {
                   {(i + 1).toLocaleString("en-US", { minimumIntegerDigits: 2 })}
                 </span>
                 <h3 className="text-lg font-bold text-dark-blue hover:text-soft-orange text-ellipsis line-clamp-4 overflow-hidden" title={title}>
-                  <a href={url}>{title}</a>
+                  <a href={link}>{title}</a>
                 </h3>
               </div>
             </div>

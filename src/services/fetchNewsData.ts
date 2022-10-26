@@ -3,9 +3,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export type articleT = {
   title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
+  excerpt: string;
+  link: string;
+  media: string;
 };
 
 export const getNewsByCategory = async (category: string = "") => {
@@ -18,9 +18,9 @@ export const getNewsByCategory = async (category: string = "") => {
 };
 
 export const getAllHeadlineNews = async () => {
-  const res = await fetch(
-    `${API_URL}top-headlines?language=en&apiKey=${API_KEY}`
-  );
+  const res = await fetch(`${API_URL}latest_headlines?lang=en&when=1h`, {
+    headers: { "x-api-key": API_KEY },
+  });
   const data = await res.json();
   const news: articleT[] = await data.articles.map(filterNews);
   return news;
@@ -32,12 +32,10 @@ export const SearchNews = async (search: string) => {
   );
   const data = await res.json();
   const news: articleT = data.articles.map(filterNews);
-  return news
+  return news;
 };
 
 const filterNews = (article: articleT) => {
-  const { title, description, url, urlToImage } = article;
-  return { title, description, url, urlToImage };
+  const { title, excerpt, link, media } = article;
+  return { title, excerpt, link, media };
 };
-
-
