@@ -25,8 +25,8 @@ export const getAllHeadlineNews = async () => {
   const res = await fetch(`${API_URL}/v2/latest_headlines?lang=en&when=1h`, {
     headers: {
       "x-api-key": API_KEY,
-      Referer: API_URL + "/",
-      "Access-Control-Allow-Origin": API_URL + "/",
+      Referer: "https://newscatcher.com",
+      "Access-Control-Allow-Origin": "https://newscatcher.com",
     },
   });
   const data = await res.json();
