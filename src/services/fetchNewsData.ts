@@ -10,7 +10,8 @@ export type articleT = {
 
 const HEADERS = {
   origin: API_URL,
-  "x-api-key": API_KEY
+  
+  
 }
 
 export const getNewsByCategory = async (category: string = "") => {
@@ -24,7 +25,10 @@ export const getNewsByCategory = async (category: string = "") => {
 
 export const getAllHeadlineNews = async () => {
   const res = await fetch(`${API_URL}/v2/latest_headlines?lang=en&when=1h`, {
-    headers: HEADERS,
+    headers: {
+      "x-api-key": API_KEY,
+      Referer: API_URL
+    },
   });
   const data = await res.json();
   const news: articleT[] = await data.articles.map(filterNews);
