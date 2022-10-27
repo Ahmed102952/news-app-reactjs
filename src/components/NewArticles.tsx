@@ -6,17 +6,18 @@ interface NewArticlesProps {
 }
 const NewArticles = ({ newArticles }: NewArticlesProps) => {
   return (
-    <div className="w-full bg-dark-blue p-6">
+    <section className="w-full bg-dark-blue p-6">
       <h2 className="font-Tenor text-3xl font-bold text-soft-orange">New</h2>
-      {newArticles?.slice(0, 3).map(({ title, excerpt, link }, i, a) => {
+      {newArticles?.slice(0, 3).map(({ title, description, link }, i, a) => {
         return (
           <article
             className={`${
               i === a.length - 1 ? "" : "border-b border-b-dark-grayish-blue"
-            } py-4 space-y-2`}
+            } space-y-2 py-4`}
+            key={i}
           >
             <h3
-              className="font-Tenor text-base font-semibold text-white hover:text-soft-orange overflow-hidden line-clamp-3 text-ellipsis"
+              className="overflow-hidden text-ellipsis font-Tenor text-base font-semibold text-white line-clamp-3 hover:text-soft-orange"
               title={title}
             >
               <a href={link} target="_blank">
@@ -24,15 +25,15 @@ const NewArticles = ({ newArticles }: NewArticlesProps) => {
               </a>
             </h3>
             <p
-              className="text-sm overflow-hidden text-ellipsis font-Noto-Sans text-off-white line-clamp-3"
-              title={excerpt}
+              className="overflow-hidden text-ellipsis font-Noto-Sans text-sm text-off-white line-clamp-3"
+              title={description}
             >
-              {excerpt}
+              {description}
             </p>
           </article>
         );
       })}
-    </div>
+    </section>
   );
 };
 
